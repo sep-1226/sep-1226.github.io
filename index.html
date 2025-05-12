@@ -93,16 +93,25 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>基于hexo + Github 搭建一个专属自己的个人博客（已有github及账号版）</p>
-<p>①first step：​​安装Node.js​​：Hexo基于Node.js（<a target="_blank" rel="noopener" href="https://nodejs.org/zh-cn%EF%BC%89">https://nodejs.org/zh-cn）</a><br>在 ​​普通命令行（CMD&#x2F;PowerShell，快捷键win+r打开，CMD）​​ 中运行（不要在 Node.js REPL 环境输入）<br>输入：npm install -g hexo-cli</p>
-<p>安装完成后验证：<br>hexo -v  # 查看 Hexo 版本</p>
-<p>② ​​初始化博客项目​​<br>hexo init myblog  # 创建名为 myblog 的博客文件夹<br>cd myblog         # 进入项目目录<br>npm install       # 安装依赖包</p>
-<p>③ ​​本地启动测试​​<br>hexo server<br>访问 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> 查看默认博客页面。</p>
+        <h1 id="基于hexo-Github-搭建一个专属自己的个人博客（已有github及账号版）"><a href="#基于hexo-Github-搭建一个专属自己的个人博客（已有github及账号版）" class="headerlink" title="基于hexo + Github 搭建一个专属自己的个人博客（已有github及账号版）"></a>基于hexo + Github 搭建一个专属自己的个人博客（已有github及账号版）</h1><h2 id="一、first-step​​安装Node-js​​：Hexo基于Node-js（https-nodejs-org-zh-cn）"><a href="#一、first-step​​安装Node-js​​：Hexo基于Node-js（https-nodejs-org-zh-cn）" class="headerlink" title="一、first step​​安装Node.js​​：Hexo基于Node.js（https://nodejs.org/zh-cn）"></a>一、first step​​安装Node.js​​：Hexo基于Node.js（<a target="_blank" rel="noopener" href="https://nodejs.org/zh-cn%EF%BC%89">https://nodejs.org/zh-cn）</a></h2><p>在 ​​普通命令行（CMD&#x2F;PowerShell，快捷键win+r打开，CMD）​​ 中运行（不要在 Node.js REPL 环境输入）<br>输入：<code>npm install -g hexo-cli</code></p>
+<p>安装完成后验证：<br><code>hexo -v</code>  # 查看 Hexo 版本</p>
+<h2 id="二、​​初始化博客项目​​"><a href="#二、​​初始化博客项目​​" class="headerlink" title="二、​​初始化博客项目​​"></a>二、​​初始化博客项目​​</h2><p><code>hexo init myblog</code>  # 创建名为 myblog 的博客文件夹<br><code>cd myblog</code>         # 进入项目目录<br><code>npm install</code>       # 安装依赖包</p>
+<h2 id="三、本地启动测试​​"><a href="#三、本地启动测试​​" class="headerlink" title="三、本地启动测试​​"></a>三、本地启动测试​​</h2><p><code>hexo server</code><br>访问 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> 查看默认博客页面。</p>
+<h2 id="一、搭建过程中常见的命令"><a href="#一、搭建过程中常见的命令" class="headerlink" title="一、搭建过程中常见的命令"></a>一、搭建过程中常见的命令</h2><h3 id="cd-myblog-dir"><a href="#cd-myblog-dir" class="headerlink" title="cd myblog &amp;&amp; dir"></a><code>cd myblog &amp;&amp; dir</code></h3><p>1.cd myblog:change directory<br>2.&amp;&amp;:”前一个命令成功执行后才执行下一个命令”<br>3.dir:显示当前目录内容的命令（类似 Linux 的 ls）</p>
+<h3 id="myblog-echo-路径正确-echo-路径错误"><a href="#myblog-echo-路径正确-echo-路径错误" class="headerlink" title="myblog &amp;&amp; echo 路径正确 || echo 路径错误"></a><code>myblog &amp;&amp; echo 路径正确 || echo 路径错误</code></h3><p>echo是用于 输出文本的命令<br>1.&amp;&amp;（逻辑与）​<br>如果 myblog 执行成功（返回 0）​​，则执行 echo 路径正确。<br>2.||（逻辑或）​<br>  如果 myblog 执行失败（返回非 0）​​，则执行 echo 路径错误。</p>
+<h3 id="hexo-clean-hexo-server"><a href="#hexo-clean-hexo-server" class="headerlink" title="hexo clean &amp;&amp; hexo server"></a><code>hexo clean &amp;&amp; hexo server</code></h3><p>hexo clean   # 1. 清理旧缓存</p>
+<p>&amp;&amp;           # 2. 如果上一步成功，则继续</p>
+<p>hexo server  # 3. 启动本地服务器</p>
+<h2 id="其他常见问题"><a href="#其他常见问题" class="headerlink" title="其他常见问题"></a>其他常见问题</h2><h2 id="如何重新打开播客编辑修改"><a href="#如何重新打开播客编辑修改" class="headerlink" title="如何重新打开播客编辑修改"></a>如何重新打开播客编辑修改</h2><p>在命令行里找到自己的博客目录<br><code>C:\Users\[自己用户名]\myblog</code># Windows系统</p>
+<p><code>dir</code>验证路径,应看到以下关键目录：<br>_config.yml  source&#x2F;  themes&#x2F;  node_modules&#x2F;</p>
+<p>进入文章目录，用编辑器打开文章</p>
+<p><code>cd source/_posts</code></p>
+<p><code>code My-New-Post.md</code></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/05/11/My-New-Post/" data-id="cmajsye4q00003wuw2ltj3h10" data-title="My New Post" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/05/11/My-New-Post/" data-id="cmakv0zvy0000d8uw9qoo2qdw" data-title="My New Post" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -155,7 +164,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/05/11/hello-world/" data-id="cmajsye5500013wuwbqea1dey" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/05/11/hello-world/" data-id="cmakv0zw90003d8uw9p7wga81" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
