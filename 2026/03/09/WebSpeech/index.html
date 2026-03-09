@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="项目简介这是一个基于 浏览器原生 Web Speech API 实现的前端语音识别 Demo，主要目标是让页面具备 实时语音转文字 的能力，并尽量降低接入成本。 和传统的“录音 → 上传服务器 → 调用 ASR 接口 → 返回识别结果”的方案不同，这个项目直接利用浏览器提供的原生能力，在前端完成语音识别，适合用于：  AI 对话输入 语音搜索 表单语音填写 轻量级语音助手 快速原型验证   项目亮">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于 Web Speech API 的浏览器实时语音识别 Demo">
+<meta property="og:url" content="http://example.com/2026/03/09/WebSpeech/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="项目简介这是一个基于 浏览器原生 Web Speech API 实现的前端语音识别 Demo，主要目标是让页面具备 实时语音转文字 的能力，并尽量降低接入成本。 和传统的“录音 → 上传服务器 → 调用 ASR 接口 → 返回识别结果”的方案不同，这个项目直接利用浏览器提供的原生能力，在前端完成语音识别，适合用于：  AI 对话输入 语音搜索 表单语音填写 轻量级语音助手 快速原型验证   项目亮">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-03-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-09T03:21:23.023Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Next.js">
+<meta property="article:tag" content="TypeScript">
+<meta property="article:tag" content="Web Speech API">
+<meta property="article:tag" content="前端项目">
+<meta property="article:tag" content="语音识别">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2026/03/09/WebSpeech/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2026/03/09/WebSpeech/","path":"2026/03/09/WebSpeech/","title":"基于 Web Speech API 的浏览器实时语音识别 Demo"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>基于 Web Speech API 的浏览器实时语音识别 Demo | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">项目简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E4%BA%AE%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">项目亮点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%AE%9E%E6%97%B6%E8%AF%86%E5%88%AB%EF%BC%8C%E8%BE%B9%E8%AF%B4%E8%BE%B9%E5%87%BA%E7%BB%93%E6%9E%9C"><span class="nav-number">2.1.</span> <span class="nav-text">1. 实时识别，边说边出结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%BA%AF%E5%89%8D%E7%AB%AF%E8%83%BD%E5%8A%9B%E6%8E%A5%E5%85%A5%E6%88%90%E6%9C%AC%E4%BD%8E"><span class="nav-number">2.2.</span> <span class="nav-text">2. 纯前端能力接入成本低</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%94%AF%E6%8C%81%E5%A4%9A%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB"><span class="nav-number">2.3.</span> <span class="nav-text">3. 支持多语言识别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E9%80%82%E5%90%88%E5%B0%81%E8%A3%85%E6%88%90%E5%8F%AF%E5%A4%8D%E7%94%A8%E7%BB%84%E4%BB%B6"><span class="nav-number">2.4.</span> <span class="nav-text">4. 适合封装成可复用组件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%80%E6%9C%AF%E6%A0%88"><span class="nav-number">3.</span> <span class="nav-text">技术栈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD%E8%AF%B4%E6%98%8E"><span class="nav-number">4.</span> <span class="nav-text">功能说明</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/03/09/WebSpeech/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="基于 Web Speech API 的浏览器实时语音识别 Demo | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          基于 Web Speech API 的浏览器实时语音识别 Demo
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-03-09 00:00:00 / Modified: 11:21:23" itemprop="dateCreated datePublished" datetime="2026-03-09T00:00:00+08:00">2026-03-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%A1%B9%E7%9B%AE%E5%B1%95%E7%A4%BA/" itemprop="url" rel="index"><span itemprop="name">项目展示</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h2><p>这是一个基于 <strong>浏览器原生 Web Speech API</strong> 实现的前端语音识别 Demo，主要目标是让页面具备 <strong>实时语音转文字</strong> 的能力，并尽量降低接入成本。</p>
+<p>和传统的“录音 → 上传服务器 → 调用 ASR 接口 → 返回识别结果”的方案不同，这个项目直接利用浏览器提供的原生能力，在前端完成语音识别，适合用于：</p>
+<ul>
+<li>AI 对话输入</li>
+<li>语音搜索</li>
+<li>表单语音填写</li>
+<li>轻量级语音助手</li>
+<li>快速原型验证</li>
+</ul>
+<hr>
+<h2 id="项目亮点"><a href="#项目亮点" class="headerlink" title="项目亮点"></a>项目亮点</h2><h3 id="1-实时识别，边说边出结果"><a href="#1-实时识别，边说边出结果" class="headerlink" title="1. 实时识别，边说边出结果"></a>1. 实时识别，边说边出结果</h3><p>用户说话时，页面可以同步显示识别文本，交互体验更自然，适合对话式场景。</p>
+<h3 id="2-纯前端能力接入成本低"><a href="#2-纯前端能力接入成本低" class="headerlink" title="2. 纯前端能力接入成本低"></a>2. 纯前端能力接入成本低</h3><p>项目基于浏览器原生 <code>Web Speech API</code>，不依赖额外后端服务，不需要自己处理音频上传、转码和识别链路，适合快速开发。</p>
+<h3 id="3-支持多语言识别"><a href="#3-支持多语言识别" class="headerlink" title="3. 支持多语言识别"></a>3. 支持多语言识别</h3><p>方案可支持中文、英文、日文、韩文等多种语言，在不同产品场景下具备较好的扩展性。</p>
+<h3 id="4-适合封装成可复用组件"><a href="#4-适合封装成可复用组件" class="headerlink" title="4. 适合封装成可复用组件"></a>4. 适合封装成可复用组件</h3><p>项目中已将语音识别能力抽象为组件，可以在不同页面中快速复用，降低业务接入成本。</p>
+<hr>
+<h2 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h2><ul>
+<li><strong>Next.js</strong></li>
+<li><strong>TypeScript</strong></li>
+<li><strong>Tailwind CSS</strong></li>
+<li><strong>Web Speech API</strong></li>
+</ul>
+<hr>
+<h2 id="功能说明"><a href="#功能说明" class="headerlink" title="功能说明"></a>功能说明</h2><p>目前项目已经实现了以下能力：</p>
+<ul>
+<li>浏览器端语音识别</li>
+<li>实时回显识别结果</li>
+<li>识别完成后的回调处理</li>
+<li>多语言配置支持</li>
+<li>组件化封装，便于业务接入</li>
+</ul>
+<p>项目中的核心用法类似这样：</p>
+<pre><code class="language-tsx">import &#123; SpeechRecognitionDemo &#125; from &#39;@/components/SpeechRecognitionDemo&#39;;
+
+export default function Page() &#123;
+    const handleTranscriptComplete = (text: string) =&gt; &#123;
+        console.log(&#39;识别结果：&#39;, text);
+        // 在这里处理识别完成后的文本
+    &#125;;
+
+    return (
+        &lt;div&gt;
+            &lt;SpeechRecognitionDemo
+                onTranscriptComplete=&#123;handleTranscriptComplete&#125;
+            /&gt;
+        &lt;/div&gt;
+    );
+&#125;
+</code></pre>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Next-js/" rel="tag"># Next.js</a>
+              <a href="/tags/TypeScript/" rel="tag"># TypeScript</a>
+              <a href="/tags/Web-Speech-API/" rel="tag"># Web Speech API</a>
+              <a href="/tags/%E5%89%8D%E7%AB%AF%E9%A1%B9%E7%9B%AE/" rel="tag"># 前端项目</a>
+              <a href="/tags/%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB/" rel="tag"># 语音识别</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/03/01/ClaudeSkill/" rel="prev" title="我做了一个用于开题报告写作的 Claude Skill：以“阿列西·艾尔雅维奇的图像意识形态研究”为例">
+                  <i class="fa fa-angle-left"></i> 我做了一个用于开题报告写作的 Claude Skill：以“阿列西·艾尔雅维奇的图像意识形态研究”为例
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

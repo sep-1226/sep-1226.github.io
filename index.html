@@ -128,16 +128,16 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">categories</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>
@@ -163,7 +163,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2026/03/08/ClaudeSkill/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/03/09/WebSpeech/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -181,7 +181,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/03/08/ClaudeSkill/" class="post-title-link" itemprop="url">我做了一个用于开题报告写作的 Claude Skill：以“阿列西·艾尔雅维奇的图像意识形态研究”为例</a>
+          <a href="/2026/03/09/WebSpeech/" class="post-title-link" itemprop="url">基于 Web Speech API 的浏览器实时语音识别 Demo</a>
         </h2>
 
         <div class="post-meta-container">
@@ -193,7 +193,139 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2026-03-08 18:00:00 / Modified: 22:44:56" itemprop="dateCreated datePublished" datetime="2026-03-08T18:00:00+08:00">2026-03-08</time>
+      <time title="Created: 2026-03-09 00:00:00 / Modified: 11:21:23" itemprop="dateCreated datePublished" datetime="2026-03-09T00:00:00+08:00">2026-03-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%A1%B9%E7%9B%AE%E5%B1%95%E7%A4%BA/" itemprop="url" rel="index"><span itemprop="name">项目展示</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h2><p>这是一个基于 <strong>浏览器原生 Web Speech API</strong> 实现的前端语音识别 Demo，主要目标是让页面具备 <strong>实时语音转文字</strong> 的能力，并尽量降低接入成本。</p>
+<p>和传统的“录音 → 上传服务器 → 调用 ASR 接口 → 返回识别结果”的方案不同，这个项目直接利用浏览器提供的原生能力，在前端完成语音识别，适合用于：</p>
+<ul>
+<li>AI 对话输入</li>
+<li>语音搜索</li>
+<li>表单语音填写</li>
+<li>轻量级语音助手</li>
+<li>快速原型验证</li>
+</ul>
+<hr>
+<h2 id="项目亮点"><a href="#项目亮点" class="headerlink" title="项目亮点"></a>项目亮点</h2><h3 id="1-实时识别，边说边出结果"><a href="#1-实时识别，边说边出结果" class="headerlink" title="1. 实时识别，边说边出结果"></a>1. 实时识别，边说边出结果</h3><p>用户说话时，页面可以同步显示识别文本，交互体验更自然，适合对话式场景。</p>
+<h3 id="2-纯前端能力接入成本低"><a href="#2-纯前端能力接入成本低" class="headerlink" title="2. 纯前端能力接入成本低"></a>2. 纯前端能力接入成本低</h3><p>项目基于浏览器原生 <code>Web Speech API</code>，不依赖额外后端服务，不需要自己处理音频上传、转码和识别链路，适合快速开发。</p>
+<h3 id="3-支持多语言识别"><a href="#3-支持多语言识别" class="headerlink" title="3. 支持多语言识别"></a>3. 支持多语言识别</h3><p>方案可支持中文、英文、日文、韩文等多种语言，在不同产品场景下具备较好的扩展性。</p>
+<h3 id="4-适合封装成可复用组件"><a href="#4-适合封装成可复用组件" class="headerlink" title="4. 适合封装成可复用组件"></a>4. 适合封装成可复用组件</h3><p>项目中已将语音识别能力抽象为组件，可以在不同页面中快速复用，降低业务接入成本。</p>
+<hr>
+<h2 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h2><ul>
+<li><strong>Next.js</strong></li>
+<li><strong>TypeScript</strong></li>
+<li><strong>Tailwind CSS</strong></li>
+<li><strong>Web Speech API</strong></li>
+</ul>
+<hr>
+<h2 id="功能说明"><a href="#功能说明" class="headerlink" title="功能说明"></a>功能说明</h2><p>目前项目已经实现了以下能力：</p>
+<ul>
+<li>浏览器端语音识别</li>
+<li>实时回显识别结果</li>
+<li>识别完成后的回调处理</li>
+<li>多语言配置支持</li>
+<li>组件化封装，便于业务接入</li>
+</ul>
+<p>项目中的核心用法类似这样：</p>
+<pre><code class="language-tsx">import &#123; SpeechRecognitionDemo &#125; from &#39;@/components/SpeechRecognitionDemo&#39;;
+
+export default function Page() &#123;
+    const handleTranscriptComplete = (text: string) =&gt; &#123;
+        console.log(&#39;识别结果：&#39;, text);
+        // 在这里处理识别完成后的文本
+    &#125;;
+
+    return (
+        &lt;div&gt;
+            &lt;SpeechRecognitionDemo
+                onTranscriptComplete=&#123;handleTranscriptComplete&#125;
+            /&gt;
+        &lt;/div&gt;
+    );
+&#125;
+</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/03/01/ClaudeSkill/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/03/01/ClaudeSkill/" class="post-title-link" itemprop="url">我做了一个用于开题报告写作的 Claude Skill：以“阿列西·艾尔雅维奇的图像意识形态研究”为例</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2026-03-01 18:00:00" itemprop="dateCreated datePublished" datetime="2026-03-01T18:00:00+08:00">2026-03-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-03-09 11:21:11" itemprop="dateModified" datetime="2026-03-09T11:21:11+08:00">2026-03-09</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -218,7 +350,7 @@
           <p>这是一个面向中文人文学术写作场景的 Claude Skill，能够围绕特定研究对象自动生成开题报告框架、研究现状梳理、方法论设计与学术表达优化。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2026/03/08/ClaudeSkill/">
+              <a class="btn" href="/2026/03/01/ClaudeSkill/">
                 Read more &raquo;
               </a>
             </div>
@@ -249,7 +381,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2026/03/08/WechatAgent/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/02/08/WechatAgent/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -267,7 +399,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/03/08/WechatAgent/" class="post-title-link" itemprop="url">WeChatAgent</a>
+          <a href="/2026/02/08/WechatAgent/" class="post-title-link" itemprop="url">WeChatAgent</a>
         </h2>
 
         <div class="post-meta-container">
@@ -277,9 +409,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2026-03-08 17:39:57 / Modified: 21:51:49" itemprop="dateCreated datePublished" datetime="2026-03-08T17:39:57+08:00">2026-03-08</time>
+      <time title="Created: 2026-02-08 17:39:57" itemprop="dateCreated datePublished" datetime="2026-02-08T17:39:57+08:00">2026-02-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-03-09 11:20:51" itemprop="dateModified" datetime="2026-03-09T11:20:51+08:00">2026-03-09</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -304,7 +442,7 @@
           <p>一个面向公众号场景的自动选题与文章生成 Agent，支持选题、大纲、正文写作与 Markdown 输出。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2026/03/08/WechatAgent/">
+              <a class="btn" href="/2026/02/08/WechatAgent/">
                 Read more &raquo;
               </a>
             </div>
